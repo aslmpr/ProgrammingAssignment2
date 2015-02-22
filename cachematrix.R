@@ -36,7 +36,11 @@ cacheSolve <- function(x, ...) {
     return(m)
   }
   data <- x$get()
-  m <- solve(data, ...)
-  x$setinverse(m)
-  m
+  if(round(det(data))!=0){    #check if the matrix is invertible (determinant of matrix is not zero)
+     m <- solve(data, ...)
+     x$setinverse(m)
+     m}
+  else{
+    message("Matrix is not Invertible!")
+  }
  }
